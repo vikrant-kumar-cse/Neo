@@ -90,7 +90,7 @@ const Resend_Otp = () => {
           <div className="flex-1">
             <button
               type="button"
-              onClick={() => navigate('/login')}
+              onClick={() => navigate('/BrandLogin')}
               className="flex items-center text-gray-600 mb-6 hover:text-gray-900"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">

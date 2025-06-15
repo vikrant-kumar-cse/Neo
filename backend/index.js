@@ -10,6 +10,8 @@ const path = require('path'); // ✅ Add path if needed
 const sequelize = require('./config/db');
 const VerificationCode = require('./Models/verification_codes');
 const Brand_Manager=require('./Models/Brand_Manager');
+const businessinfo = require('./Routes/businessinfo');
+const templateRoutes = require('./Routes/templateRoutes');
 
 require('dotenv').config();
 require('./Models/db');
@@ -38,6 +40,8 @@ app.use('/auth', AuthRouter);
 app.use('/stores', StoreRouter);
 app.use('/product', ProductRouter);
 app.use('/upload', glbroute);
+app.use('/Brand',businessinfo);
+app.use('/templates', templateRoutes);
 
 sequelize.sync({ alter: true }).then(() => {
     console.log("Tables Created Successfully!");

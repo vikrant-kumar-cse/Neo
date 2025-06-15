@@ -315,7 +315,6 @@ const verifyCode = async (req, res) => {
             });
         }
 
-        console.log("Verification Code:", verification_code);
 
         // Find the user in the database by verification code only
         const brand = await Brand_Manager.findOne({
@@ -343,13 +342,17 @@ const verifyCode = async (req, res) => {
             where: { id: brand.id }
         });
 
-        console.log(`Account with ID ${brand.id} verified successfully.`);
+        const token = jwt.sign({ brandId: brand.id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
-        // Send success response
-        res.status(200).json({
+       // Send success response
+       res.status(200).json({
             success: true,
-            message: 'Account verified successfully!'
+            message: "Account verified successfully!",
+            token,
+            brandId: brand.id
         });
+
+        console.log(`Account with ID ${brand.id} verified successfully.`);
 
     } catch (err) {
         console.error("Error in verification process:", err.message);
